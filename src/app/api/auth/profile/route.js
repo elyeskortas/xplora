@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // src/app/api/auth/profile/route.js
 import { connectToDB } from "@/lib/mongodb.js"
 import User from "@/models/user.js"
@@ -5,10 +6,18 @@ import { hashPassword, validateEmail, validatePassword, verifyToken } from "@/li
 import { cookies } from "next/headers"
 
 // ✅ Inscription (tu l’as déjà)
+=======
+import { connectToDB } from "@/lib/mongodb.js"
+import User from "@/models/user.js"
+import { hashPassword, generateToken, validateEmail, validatePassword } from "@/lib/auth.js"
+import { cookies } from "next/headers"
+
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 export async function POST(request) {
   try {
     const { firstName, lastName, email, password, confirmPassword } = await request.json()
 
+<<<<<<< HEAD
     if (!firstName || !lastName || !email || !password) {
       return Response.json({ message: "Tous les champs sont requis" }, { status: 400 })
     }
@@ -18,17 +27,37 @@ export async function POST(request) {
     if (!validatePassword(password)) {
       return Response.json({ message: "Le mot de passe doit contenir au moins 6 caractères" }, { status: 400 })
     }
+=======
+    // Validation des données
+    if (!firstName || !lastName || !email || !password) {
+      return Response.json({ message: "Tous les champs sont requis" }, { status: 400 })
+    }
+
+    if (!validateEmail(email)) {
+      return Response.json({ message: "Email invalide" }, { status: 400 })
+    }
+
+    if (!validatePassword(password)) {
+      return Response.json({ message: "Le mot de passe doit contenir au moins 6 caractères" }, { status: 400 })
+    }
+
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
     if (password !== confirmPassword) {
       return Response.json({ message: "Les mots de passe ne correspondent pas" }, { status: 400 })
     }
 
     await connectToDB()
 
+<<<<<<< HEAD
+=======
+    // Vérifier si l'utilisateur existe déjà
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
     const existingUser = await User.findOne({ email })
     if (existingUser) {
       return Response.json({ message: "Un compte avec cet email existe déjà" }, { status: 400 })
     }
 
+<<<<<<< HEAD
     const hashedPassword = await hashPassword(password)
 
     const user = new User({
@@ -48,6 +77,47 @@ export async function POST(request) {
           lastName: user.lastName,
           email: user.email,
         },
+=======
+    // Hasher le mot de passe
+    const hashedPassword = await hashPassword(password)
+
+    // Créer l'utilisateur
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+    })
+
+    await user.save()
+
+    // Générer le token
+    const token = generateToken(user._id)
+
+    // Définir le cookie
+    const cookieStore = await cookies()
+    cookieStore.set("auth-token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 jours
+    })
+
+    // Retourner les données utilisateur (sans le mot de passe)
+    const userResponse = {
+      id: user._id.toString(),
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      role: user.role,
+      isVerified: user.isVerified,
+    }
+
+    return Response.json(
+      {
+        message: "Inscription réussie",
+        user: userResponse,
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
       },
       { status: 201 },
     )
@@ -56,6 +126,7 @@ export async function POST(request) {
     return Response.json({ message: "Erreur serveur lors de l'inscription" }, { status: 500 })
   }
 }
+<<<<<<< HEAD
 
 // ✅ Mise à jour du profil utilisateur connecté
 export async function PUT(request) {
@@ -112,3 +183,5 @@ export async function PUT(request) {
     return Response.json({ message: "Erreur serveur lors de la mise à jour du profil" }, { status: 500 })
   }
 }
+=======
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

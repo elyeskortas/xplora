@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -11,16 +12,36 @@ export default function BestSellers() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+=======
+"use client"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { useCart } from "@/context/cart-context"
+import { useAuth } from "@/context/auth-context"
+import WishlistButton from "./WishlistButton"
+
+export default function BestSellers() {
+  const { addToCart } = useCart()
+  const { isAuthenticated } = useAuth()
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 
   useEffect(() => {
     const fetchBestSellers = async () => {
       try {
+<<<<<<< HEAD
         setLoading(true);
+=======
+        setLoading(true)
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
         const res = await fetch("/api/vinyls/bestsellers", {
           cache: "no-store",
           headers: {
             "Content-Type": "application/json",
           },
+<<<<<<< HEAD
         });
 
         if (!res.ok) {
@@ -45,15 +66,48 @@ export default function BestSellers() {
     if (!isAuthenticated) {
       window.location.href = "/auth/login?redirect=/";
       return;
+=======
+        })
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`)
+        }
+
+        const data = await res.json()
+        setProducts(data)
+        setError(null)
+      } catch (error) {
+        console.error("Erreur chargement bestsellers:", error)
+        setError("Erreur lors du chargement des meilleures ventes")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchBestSellers()
+  }, [])
+
+  const handleAddToCart = (product) => {
+    if (!isAuthenticated) {
+      window.location.href = "/auth/login?redirect=/"
+      return
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
     }
 
     const productWithId = {
       ...product,
       id: product._id?.toString() || product.id,
+<<<<<<< HEAD
     };
 
     addToCart(productWithId);
   };
+=======
+    }
+
+    addToCart(productWithId)
+  }
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 
   if (loading) {
     return (
@@ -68,7 +122,11 @@ export default function BestSellers() {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
     );
+=======
+    )
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
   }
 
   if (error) {
@@ -81,7 +139,11 @@ export default function BestSellers() {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
     );
+=======
+    )
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
   }
 
   if (products.length === 0) {
@@ -94,7 +156,11 @@ export default function BestSellers() {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
     );
+=======
+    )
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
   }
 
   return (
@@ -109,12 +175,21 @@ export default function BestSellers() {
 
         <div className="d-flex gap-4 overflow-auto" style={{ paddingBottom: "1rem" }}>
           {products.map((product) => {
+<<<<<<< HEAD
             const productId = product._id?.toString() || product.id;
             const productImage = product.img || product.image;
 
             return (
               <div
                 key={productId}
+=======
+            const productId = product._id?.toString() || product.id
+            const productImage = product.img || product.image
+
+            return (
+              <div
+                key={productId} // Clé unique corrigée
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                 className="card product-card shadow-sm"
                 style={{ minWidth: "250px", flexShrink: 0, position: "relative" }}
               >
@@ -126,12 +201,19 @@ export default function BestSellers() {
                       className="card-img-top"
                       style={{ width: "100%", height: "200px", objectFit: "cover" }}
                       onError={(e) => {
+<<<<<<< HEAD
                         e.target.src = "/images/placeholder-vinyl.png";
                       }}
                     />
                     <span className="badge bg-warning text-dark position-absolute top-0 start-0 m-2">
                       Best Seller
                     </span>
+=======
+                        e.target.src = "/images/placeholder-vinyl.jpg"
+                      }}
+                    />
+                    <span className="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Best Seller</span>
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                   </div>
                 </Link>
 
@@ -143,9 +225,13 @@ export default function BestSellers() {
                       {product.title}
                     </h5>
                     <p className="card-text text-center fw-bold text-primary">${product.price.toFixed(2)}</p>
+<<<<<<< HEAD
                     {product.stock && (
                       <p className="card-text text-center text-muted small">Stock: {product.stock}</p>
                     )}
+=======
+                    {product.stock && <p className="card-text text-center text-muted small">Stock: {product.stock}</p>}
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                   </div>
 
                   <div className="text-center mt-auto">
@@ -167,7 +253,11 @@ export default function BestSellers() {
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
             );
+=======
+            )
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
           })}
         </div>
 
@@ -182,5 +272,9 @@ export default function BestSellers() {
         )}
       </div>
     </section>
+<<<<<<< HEAD
   );
+=======
+  )
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 }

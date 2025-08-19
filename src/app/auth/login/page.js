@@ -27,7 +27,11 @@ export default function LoginPage() {
     setLoading(true)
     setError("")
 
+<<<<<<< HEAD
     const result = await login(formData.email, formData.password, "user")
+=======
+    const result = await login(formData.email, formData.password)
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 
     if (result.success) {
       router.push("/")
@@ -116,4 +120,8 @@ export default function LoginPage() {
       </div>
     </div>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

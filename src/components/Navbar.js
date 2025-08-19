@@ -162,9 +162,12 @@ export default function Navbar() {
                     <i className="bi bi-chat-dots"></i> Chatbot
                   </Link>
                 </li>
+<<<<<<< HEAD
                 <Link href="/admin" className="nav-link">
   <i className="bi bi-speedometer2"></i> Dashboard
 </Link>
+=======
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                 {/* FIN AJOUT DU LIEN CHATBOT */}
                 <li className="nav-item">
                   <Link href="/wishlist" className="nav-link">
@@ -311,7 +314,11 @@ export default function Navbar() {
                             alt={vinyl.title}
                             style={{ width: "40px", height: "40px", objectFit: "cover", marginRight: "10px" }}
                             onError={(e) => {
+<<<<<<< HEAD
                               e.target.src = "/images/placeholder-vinyl.png"
+=======
+                              e.target.src = "/images/placeholder-vinyl.jpg"
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                             }}
                           />
                           <div>

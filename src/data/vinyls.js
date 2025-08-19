@@ -177,4 +177,8 @@ const vinyls = [
   },
 ];
 
+<<<<<<< HEAD
 export default vinyls;
+=======
+export default vinyls;
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

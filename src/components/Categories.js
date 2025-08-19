@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import Image from 'next/image';
+=======
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 import Link from 'next/link';
 
 export default function Categories() {
@@ -13,6 +16,7 @@ export default function Categories() {
           ].map(({ img, title, id }) => (
             <div className="col-md-4" key={title}>
               <div className="card">
+<<<<<<< HEAD
                 <Image
   src={`/images/${img}`}
   alt={title}
@@ -21,6 +25,9 @@ export default function Categories() {
   className="img-fluid"
 />
 
+=======
+                <img src={`/images/${img}`} className="img-fluid" alt={title} />
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                 <div className="card-body text-center">
                   <h5 className="card-title">{title}</h5>
                   <Link href={`/vinyles#${id}`} className="btn btn-dark text-uppercase mt-2">
@@ -34,4 +41,8 @@ export default function Categories() {
       </div>
     </section>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

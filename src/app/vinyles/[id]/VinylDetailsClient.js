@@ -44,6 +44,7 @@ export default function VinylDetailsClient({ vinyl }) {
           </p>
 
           <button
+<<<<<<< HEAD
   onClick={handleAddToCart}
   disabled={added || vinyl.stock === 0}
   className={`btn ${added ? "btn-success" : "btn-primary"} me-2`}
@@ -55,6 +56,14 @@ export default function VinylDetailsClient({ vinyl }) {
     : "Ajouter au panier"}
 </button>
 
+=======
+            onClick={handleAddToCart}
+            disabled={added || vinyl.stock === 0}
+            className={`btn ${added ? "btn-success" : "btn-primary"} me-2`}
+          >
+            {added ? "Ajouté au panier !" : vinyl.stock === 0 ? "Rupture de stock" : "Ajouter au panier"}
+          </button>
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 
           {/* Correction: Utilisation de Link au lieu de <a> */}
           <Link href="/vinyles" className="btn btn-outline-secondary">
@@ -79,4 +88,8 @@ export default function VinylDetailsClient({ vinyl }) {
       )}
     </>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

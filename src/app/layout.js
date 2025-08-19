@@ -4,7 +4,10 @@ import { WishlistProvider } from "@/context/wishlist-context"
 import { AuthProvider } from "@/context/auth-context"
 import BootstrapClient from "@/components/bootstrap-client"
 import { Inter } from "next/font/google"
+<<<<<<< HEAD
 import ChatbotWidget from "@/components/ChatbotWidget"
+=======
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./globals.css"
@@ -21,7 +24,10 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <body className={inter.className}>
         <BootstrapClient />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
         {/* Définition des icônes SVG à usage global */}
         <svg style={{ display: "none" }} xmlns="http://www.w3.org/2000/svg">
           <symbol id="star-quality" viewBox="0 0 24 24" fill="currentColor">
@@ -44,11 +50,18 @@ export default function RootLayout({ children }) {
             <WishlistProvider>
               <Navbar />
               {children}
+<<<<<<< HEAD
               <ChatbotWidget /> 
+=======
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
             </WishlistProvider>
           </CartProvider>
         </AuthProvider>
       </body>
     </html>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

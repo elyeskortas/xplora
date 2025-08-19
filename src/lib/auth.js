@@ -13,8 +13,12 @@ export async function verifyPassword(password, hashedPassword) {
 }
 
 export function generateToken(userId) {
+<<<<<<< HEAD
   // jwt sign auto-gère 'iat'
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "7d" })
+=======
+  return jwt.sign({ userId, iat: Date.now() }, JWT_SECRET, { expiresIn: "7d" })
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 }
 
 export function verifyToken(token) {

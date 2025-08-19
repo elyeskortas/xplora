@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 
 export default function Loading() {
@@ -9,4 +10,8 @@ export default function Loading() {
       <p className="mt-3">Chargement des résultats de recherche...</p>
     </div>
   );
+=======
+export default function Loading() {
+  return null
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 }

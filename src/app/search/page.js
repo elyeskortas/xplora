@@ -14,6 +14,7 @@ export default async function SearchPage({ searchParams }) {
     try {
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
       const res = await fetch(`${baseUrl}/api/vinyls/search?query=${encodeURIComponent(query)}`, {
+<<<<<<< HEAD
   cache: "no-store",
   headers: {
     "Content-Type": "application/json",
@@ -23,6 +24,16 @@ export default async function SearchPage({ searchParams }) {
 
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
+=======
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`)
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
       }
 
       vinyls = await res.json()
@@ -37,4 +48,8 @@ export default async function SearchPage({ searchParams }) {
       <SearchClient query={query} vinyls={vinyls} error={error} />
     </main>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
