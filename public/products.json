@@ -1,0 +1,8 @@
+[
+  { "id": 1, "title": "Vinyle 1", "genre": "Rock", "price": 25.99, "image": "/images/product-1.jpg" },
+  { "id": 2, "title": "Vinyle 2", "genre": "Jazz", "price": 19.99, "image": "/images/product-2.jpg" },
+  { "id": 3, "title": "Vinyle 3", "genre": "Electro", "price": 29.99, "image": "/images/product-3.jpg" },
+  { "id": 4, "title": "Vinyle 4", "genre": "Rock", "price": 15.99, "image": "/images/product-4.jpg" },
+  { "id": 5, "title": "Vinyle 5", "genre": "Jazz", "price": 22.99, "image": "/images/product-5.jpg" },
+  { "id": 6, "title": "Vinyle 6", "genre": "Electro", "price": 18.99, "image": "/images/product-6.jpg" }
+]
