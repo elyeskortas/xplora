@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // C:\Users\MSI\vinylia\src\models\vinyl.js
 import mongoose from "mongoose"
 
@@ -25,20 +24,3 @@ VinylSchema.pre("save", function (next) {
 
 const Vinyl = mongoose.models.Vinyl || mongoose.model("Vinyl", VinylSchema)
 export default Vinyl
-=======
-import mongoose from 'mongoose';
-
-const VinylSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  price: Number,
-  category: String,
-  description: String,
-  stock: Number,
-  soundcloud: String,
-});
-
-const Vinyl = mongoose.models.Vinyl || mongoose.model('Vinyl', VinylSchema);
-
-export default Vinyl;
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

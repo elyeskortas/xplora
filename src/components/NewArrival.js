@@ -128,11 +128,7 @@ export default function NewArrival() {
                       className="card-img-top"
                       style={{ width: "100%", height: "200px", objectFit: "cover" }}
                       onError={(e) => {
-<<<<<<< HEAD
                         e.target.src = "/images/placeholder-vinyl.png"
-=======
-                        e.target.src = "/images/placeholder-vinyl.jpg"
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
                       }}
                     />
                     {/* Badge nouveauté */}

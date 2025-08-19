@@ -2,10 +2,7 @@
 import { useWishlist } from "@/context/wishlist-context"
 import { useCart } from "@/context/cart-context"
 import Link from "next/link" // Assurez-vous que Link est importé
-<<<<<<< HEAD
 import Image from "next/image"
-=======
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist } = useWishlist()
@@ -48,8 +45,4 @@ export default function WishlistPage() {
       </div>
     </main>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

@@ -63,8 +63,4 @@ export async function getAllVinyls() {
     console.error("Erreur lors de la récupération des vinyles:", error)
     return vinyls // Fallback sur les données statiques
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

@@ -58,8 +58,4 @@ export function useWishlist() {
     throw new Error("useWishlist doit être utilisé à l'intérieur d'un WishlistProvider")
   }
   return context
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

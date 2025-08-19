@@ -58,8 +58,4 @@ const userSchema = new mongoose.Schema(
 
 const User = mongoose.models.User || mongoose.model("User", userSchema)
 
-<<<<<<< HEAD
 export default User
-=======
-export default User
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372
