@@ -1,19 +1,33 @@
-import { useSWR } from 'swr'
+'use client'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale } from '@/context/locale-context'
 
-const fetcher = (url) => fetch(url).then(r => r.json())
-
 export default function ToursListingPage() {
-  const { data, error, isLoading } = useSWR('/api/tours', fetcher)
+  const [data, setData] = useState([])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
   const { locale, messages } = useLocale()
   const L = locale || 'en'
+
+  useEffect(() => {
+    let mounted = true
+    fetch('/api/tours')
+      .then((r) => {
+        if (!r.ok) throw new Error('Failed to load')
+        return r.json()
+      })
+      .then((json) => { if (mounted) setData(json || []) })
+      .catch((e) => { if (mounted) setError(e) })
+      .finally(() => { if (mounted) setLoading(false) })
+    return () => { mounted = false }
+  }, [])
 
   return (
     <main className="container mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">{messages?.all_tours || 'All tours'}</h1>
-      {isLoading && <div>{messages?.loading || 'Loading...'}</div>}
+      {loading && <div>{messages?.loading || 'Loading...'}</div>}
       {error && <div className="text-red-600">{messages?.failed_to_load || 'Failed to load'}</div>}
       <div className="grid md:grid-cols-3 gap-6">
         {(data || []).map((t) => {
