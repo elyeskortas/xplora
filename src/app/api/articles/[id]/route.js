@@ -1,5 +1,5 @@
-import { connectToDB } from "../../../../../lib/mongodb.js"
-import Article from "../../../../../models/article.js"
+import { connectToDB } from "@/lib/mongodb"
+import Article from "@/models/article"
 
 export async function PUT(request, { params }) {
   try {

@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import { useSWR } from 'swr'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale } from '@/context/locale-context'
