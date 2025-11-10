@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="240" viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title08 desc08">
+  <title id="title08">Tunisia Xplora — Duotone Pin (Sun)</title>
+  <desc id="desc08">Un pin géométrique avec mer, dune, et un soleil rouge avec rayons.</desc>
+  <defs>
+    <mask id="mpin">
+      <rect x="0" y="0" width="240" height="240" fill="#000"/>
+      <g transform="translate(70,20)">
+        <path d="M85 0c41 0 75 34 75 75c0 55 -75 125 -75 125S10 130 10 75C10 34 44 0 85 0Z" fill="#fff"/>
+      </g>
+    </mask>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .t1{ font:700 40px "Poppins","Montserrat",Arial,sans-serif; fill:#0F172A }
+    .t2{ font:900 56px "Poppins","Montserrat",Arial,sans-serif; fill:#0F172A }
+  </style>
+
+  <!-- Icône (contenu masqué dans le pin) -->
+  <g mask="url(#mpin)">
+    <rect x="0" y="0" width="240" height="240" fill="#0F172A" opacity=".04"/>
+    <!-- Dune -->
+    <path d="M0 150 C60 120, 120 120, 240 150 L240 240 L0 240 Z" fill="url(#sand)"/>
+    <!-- Mer -->
+    <path d="M0 110 C40 130, 80 90, 120 110 S200 130, 240 110 L240 240 L0 240 Z" fill="url(#sea)" opacity=".95"/>
+    <!-- Soleil avec rayons -->
+    <g id="sun" transform="translate(180,70)">
+      <!-- Rayons -->
+      <g stroke="#FF8A80" stroke-width="3" stroke-linecap="round">
+        <line x1="0" y1="-20" x2="0" y2="-32"/>
+        <line x1="0" y1="20" x2="0" y2="32"/>
+        <line x1="-20" y1="0" x2="-32" y2="0"/>
+        <line x1="20" y1="0" x2="32" y2="0"/>
+        <line x1="-14" y1="-14" x2="-24" y2="-24"/>
+        <line x1="14" y1="-14" x2="24" y2="-24"/>
+        <line x1="-14" y1="14" x2="-24" y2="24"/>
+        <line x1="14" y1="14" x2="24" y2="24"/>
+      </g>
+      <!-- Disque -->
+      <circle r="12" fill="#E41E26"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(260,98)">
+    <text class="t1" x="0" y="0">Tunisia</text>
+    <text class="t2" x="0" y="62">Xplora</text>
+  </g>
+</svg>

@@ -8,8 +8,9 @@ const ArticleSchema = new mongoose.Schema(
     image: { type: String, required: true }, // nom de fichier dans /public/images
     content: { type: String, required: true }, // texte/markdown
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 const Article = mongoose.models.Article || mongoose.model("Article", ArticleSchema)
+
 export default Article

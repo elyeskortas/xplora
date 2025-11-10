@@ -2,32 +2,43 @@
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_XPLORA")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Vinyl {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String?
-  price       Float
-  stock       Int
-  category    String
-  image       String
-  soundcloud  String?
+model Tour {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  slug         String   @unique
+  type         String   // circuit | excursion | day-tour | custom
+  duration     String?
+  cities       String[] // cities/regions
+  fromPrice    Float?
+  languages    String[] // ["en", "fr", "it", "es"]
+  highlights   String[]
+  itinerary    String?  // rich text summary
+  details      String?
+  includes     String[]
+  excludes     String[]
+  packageDays  Json?    // array of { day: number, title: string, description: string, image?: string }
+  images       String[]
+  availability String?
+  rating       Float? @default(0)
+  reviews      Review[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-model User {
+model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String   @unique
-  password  String
-  wishlist  Vinyl[]  @relation("UserWishlist")
-  cart      Vinyl[]  @relation("UserCart")
-<<<<<<< HEAD
+  tourId    String   @db.ObjectId
+  author    String
+  comment   String
+  rating    Int
+  createdAt DateTime @default(now())
+
+  @@index([tourId])
 }
-=======
-}
->>>>>>> 1ce8cdf307fe0a2f6ecec13db8ef743e0b0fc372

@@ -1,9 +1,10 @@
 import { getOrderById } from "@/lib/actions/orders";
-import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { formatCurrency } from '@/lib/currency'
+import BackToListClient from '@/components/BackToListClient'
 
 export default async function OrderConfirmationPage({ params }) {
   // ✅ params est désormais un Promise dans certains contextes — il faut l'await
@@ -12,17 +13,13 @@ export default async function OrderConfirmationPage({ params }) {
   // ✅ cookies() est aussi async
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
-  if (!token) redirect("/auth/login");
-
-  const decoded = verifyToken(token.value);
-  if (!decoded) redirect("/auth/login");
 
   if (!orderId) {
     return (
       <div className="container py-5 text-center">
-        <h2 className="text-danger">Commande non trouvée</h2>
-        <p>Identifiant de commande manquant.</p>
-        <Link href="/orders" className="btn btn-primary">Voir mes commandes</Link>
+        <h2 className="text-danger">Order not found</h2>
+        <p>Missing order identifier.</p>
+        <Link href="/orders" className="btn btn-primary">View my orders</Link>
       </div>
     );
   }
@@ -32,9 +29,9 @@ export default async function OrderConfirmationPage({ params }) {
   if (!result?.success || !result?.order) {
     return (
       <div className="container py-5 text-center">
-        <h2 className="text-danger">Commande non trouvée</h2>
-        <p>Cette commande n&apos;existe pas ou ne vous appartient pas.</p>
-        <Link href="/orders" className="btn btn-primary">Voir mes commandes</Link>
+        <h2 className="text-danger">Order not found</h2>
+        <p>This order does not exist or does not belong to you.</p>
+        <Link href="/orders" className="btn btn-primary">View my orders</Link>
       </div>
     );
   }
@@ -47,60 +44,60 @@ export default async function OrderConfirmationPage({ params }) {
         <div className="mb-4">
           <i className="bi bi-check-circle-fill text-success" style={{ fontSize: "4rem" }}></i>
         </div>
-        <h1 className="text-success mb-3">Commande confirmée !</h1>
+        <h1 className="text-success mb-3">Order confirmed!</h1>
         <p className="lead">
-          Merci pour votre commande chez <strong>Vinylia</strong>.
+          Thank you for your order at <strong>Tunisia Xplora</strong>.
         </p>
-        <p>Votre commande <strong>#{order.orderNumber}</strong> a été enregistrée avec succès.</p>
+        <p>Your order <strong>#{order.orderNumber}</strong> has been recorded successfully.</p>
       </div>
 
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div className="card">
             <div className="card-header">
-              <h5 className="mb-0">Détails de la commande</h5>
+              <h5 className="mb-0">Order details</h5>
             </div>
             <div className="card-body">
               <div className="row mb-4">
                 <div className="col-md-6">
-                  <h6>Informations de commande</h6>
+                  <h6>Order information</h6>
                   <p className="mb-1">
-                    <strong>Numéro:</strong> #{order.orderNumber}
+                    <strong>Number:</strong> #{order.orderNumber}
                   </p>
                   <p className="mb-1">
-                    <strong>Date:</strong> {new Date(order.createdAt).toLocaleDateString("fr-FR")}
+                    <strong>Date:</strong> {new Date(order.createdAt).toLocaleDateString("en-US")}
                   </p>
                   <p className="mb-1">
-                    <strong>Statut:</strong>{" "}
+                    <strong>Status:</strong>{" "}
                     <span className="badge bg-warning">
-                      {order.status === "pending" ? "En attente" : order.status}
+                      {order.status === "pending" ? "Pending" : order.status}
                     </span>
                   </p>
                   <p className="mb-1">
-                    <strong>Mode de paiement:</strong> Paiement à la livraison
+                    <strong>Payment method:</strong> Cash on delivery
                   </p>
                 </div>
                 <div className="col-md-6">
-                  <h6>Adresse de livraison</h6>
+                  <h6>Shipping address</h6>
                   <p className="mb-1">{order.shippingAddress.street}</p>
                   <p className="mb-1">
                     {order.shippingAddress.postalCode} {order.shippingAddress.city}
                   </p>
                   <p className="mb-1">{order.shippingAddress.country}</p>
                   <p className="mb-1">
-                    <strong>Tél:</strong> {order.shippingAddress.phone}
+                    <strong>Phone:</strong> {order.shippingAddress.phone}
                   </p>
                 </div>
               </div>
 
-              <h6>Articles commandés</h6>
+              <h6>Ordered items</h6>
               <div className="table-responsive">
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>Article</th>
-                      <th>Prix unitaire</th>
-                      <th>Quantité</th>
+                      <th>Item</th>
+                      <th>Unit price</th>
+                      <th>Quantity</th>
                       <th>Total</th>
                     </tr>
                   </thead>
@@ -120,16 +117,16 @@ export default async function OrderConfirmationPage({ params }) {
                             <span>{item.title}</span>
                           </div>
                         </td>
-                        <td>${item.price.toFixed(2)}</td>
+                        <td>{formatCurrency(item.price)}</td>
                         <td>{item.quantity}</td>
-                        <td>${(item.price * item.quantity).toFixed(2)}</td>
+                        <td>{formatCurrency(item.price * item.quantity)}</td>
                       </tr>
                     ))}
                   </tbody>
                   <tfoot>
                     <tr>
                       <th colSpan="3">Total</th>
-                      <th>${order.totalAmount.toFixed(2)}</th>
+                      <th>{formatCurrency(order.totalAmount)}</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -146,11 +143,9 @@ export default async function OrderConfirmationPage({ params }) {
 
           <div className="text-center mt-4">
             <Link href="/orders" className="btn btn-primary me-3">
-              Voir mes commandes
+              View my orders
             </Link>
-            <Link href="/vinyles" className="btn btn-outline-secondary">
-              Continuer mes achats
-            </Link>
+            <BackToListClient />
           </div>
         </div>
       </div>

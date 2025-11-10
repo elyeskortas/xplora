@@ -1,0 +1,32 @@
+[
+  {
+    "id": "utopia",
+    "title": "UTOPIA – Travis Scott",
+    "category": "NewArrival",
+    "price": 60,
+    "stock": 12,
+    "description": "Découvrez 'UTOPIA' de Travis Scott, une expérience musicale immersive aux sonorités uniques.",
+    "image": "utopia.jpg",
+    "soundcloud": "https://soundcloud.com/travis-scott/utopia-extrait"
+  },
+  {
+    "id": "ocean-blvd",
+    "title": "Ocean Blvd – Lana Del Rey",
+    "category": "NewArrival",
+    "price": 70,
+    "stock": 8,
+    "description": "Laissez-vous transporter par 'Ocean Blvd' de Lana Del Rey, un voyage mélancolique et intense.",
+    "image": "lana.jpg",
+    "soundcloud": "https://soundcloud.com/lana-del-rey/ocean-blvd-extrait"
+  },
+  {
+    "id": "the-record",
+    "title": "The Record – boygenius",
+    "category": "NewArrival",
+    "price": 55,
+    "stock": 10,
+    "description": "L'album 'The Record' de boygenius, une fusion émouvante d'indie rock et de folk.",
+    "image": "boygenius.jpg",
+    "soundcloud": "https://soundcloud.com/boygenius/the-record-extrait"
+  }
+]

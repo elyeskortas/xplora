@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed:tours": "node ./scripts/seed-tours.js"
   },
   "dependencies": {
     "@ai-sdk/groq": "^2.0.1",
@@ -20,9 +21,11 @@
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
+    "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
+    "framer-motion": "^12.23.12",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.533.0",
     "mongodb": "^6.18.0",
@@ -31,7 +34,11 @@
     "nodemailer": "^7.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwind-merge": "^3.3.1"
+    "react-hot-toast": "^2.6.0",
+    "recharts": "^3.1.2",
+    "swr": "^2.3.6",
+    "tailwind-merge": "^3.3.1",
+    "twilio": "^5.3.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

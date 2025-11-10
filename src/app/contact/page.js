@@ -1,70 +1,92 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
+
+import React from "react";
+import { useLocale } from '@/context/locale-context'
 
 export default function ContactPage() {
+  const { messages } = useLocale()
   return (
-    <div className="container py-5">
-      <h1 className="text-center mb-4">Contactez-nous</h1>
-      <div className="row justify-content-center">
-        <div className="col-lg-8">
-          <p className="lead text-center">
-            Nous sommes là pour répondre à toutes vos questions et vous aider avec vos commandes.
-            N&apos;hésitez pas à nous contacter via les méthodes ci-dessous.
-          </p>
+    <>
+      <div className="container py-5">
+        <h1 className="text-center mb-4">{messages?.contact_heading || 'Contact us'}</h1>
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <p className="lead text-center">
+              {messages?.contact_lead || "We are happy to help you plan your trip or answer any questions."}
+            </p>
 
-          <div className="card shadow-sm mb-4">
-            <div className="card-body">
-              <h5 className="card-title">Service Client</h5>
-              <p className="card-text">
-                Pour toute question concernant une commande, un produit ou une assistance générale.
-              </p>
-              <ul className="list-unstyled">
-                <li><i className="bi bi-envelope-fill me-2"></i> Email: <a href="mailto:support@vinylia.com">support@vinylia.com</a></li>
-                <li><i className="bi bi-telephone-fill me-2"></i> Téléphone: +33 1 23 45 67 89 (Du lundi au vendredi, 9h-17h)</li>
-              </ul>
+            {/* Travel Inquiries Block */}
+            <div className="card shadow-sm mb-4">
+              <div className="card-body">
+                <h5 className="card-title">{messages?.travel_inquiries_title || 'Travel inquiries'}</h5>
+                <p className="card-text">
+                  {messages?.travel_inquiries_text || 'For tour details, availability and tailor-made requests.'}
+                </p>
+                <ul className="list-unstyled">
+                  <li>
+                    <i className="bi bi-envelope-fill me-2"></i> Email:{" "}
+                    <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@xplora.tn'}`}>
+                      {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@xplora.tn'}
+                    </a>
+                  </li>
+                  <li>
+                    <i className="bi bi-whatsapp me-2"></i> WhatsApp:{" "}
+                    <a href={`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_WHATSAPP?.replace(/\D/g, '') || '21600000000'}`}>
+                      {process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || '+216 00 000 000'}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
 
-          <div className="card shadow-sm mb-4">
-            <div className="card-body">
-              <h5 className="card-title">Presse & Partenariats</h5>
-              <p className="card-text">
-                Pour les demandes de presse, les collaborations ou les opportunités de partenariat.
-              </p>
-              <ul className="list-unstyled">
-                <li><i className="bi bi-envelope-fill me-2"></i> Email: <a href="mailto:partenariats@vinylia.com">partenariats@vinylia.com</a></li>
-              </ul>
+            {/* Office Block */}
+            <div className="card shadow-sm mb-4">
+              <div className="card-body">
+                <h5 className="card-title">{messages?.office_title || 'Office'}</h5>
+                <p className="card-text">
+                  {messages?.office_text || 'Sousse, Tunisia'}
+                </p>
+                <p className="text-muted small">
+                  {messages?.office_note || 'Visits by appointment only.'}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="card shadow-sm mb-4">
-            <div className="card-body">
-              <h5 className="card-title">Adresse de notre bureau</h5>
-              <p className="card-text">
-                Vinylia HQ<br />
-                Rue Gamaoun<br />
-                4022 Akouda,Sousse
-              </p>
-              <p className="text-muted small">Veuillez noter que ce n&apos;est pas une boutique physique.</p>
-            </div>
-          </div>
-
-          <div className="text-center mt-5">
-            <p>Suivez-nous sur les réseaux sociaux pour les dernières nouvelles et mises à jour :</p>
-            <div className="d-flex justify-content-center gap-3">
-              <a href="https://facebook.com/vinylia" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary btn-lg rounded-circle">
-                <i className="bi bi-facebook"></i>
-              </a>
-              <a href="https://instagram.com/vinylia" target="_blank" rel="noopener noreferrer" className="btn btn-outline-danger btn-lg rounded-circle">
-                <i className="bi bi-instagram"></i>
-              </a>
-              <a href="https://twitter.com/vinylia" target="_blank" rel="noopener noreferrer" className="btn btn-outline-info btn-lg rounded-circle">
-                <i className="bi bi-twitter"></i>
-              </a>
+            {/* Social */}
+            <div className="text-center mt-5">
+              <p>{messages?.follow_us || 'Follow us on social media for the latest news and updates:'}</p>
+              <div className="d-flex justify-content-center gap-3">
+                <a
+                  href="https://facebook.com/xplora.tn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline-primary btn-lg rounded-circle"
+                >
+                  <i className="bi bi-facebook"></i>
+                </a>
+                <a
+                  href="https://instagram.com/xplora.tn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline-danger btn-lg rounded-circle"
+                >
+                  <i className="bi bi-instagram"></i>
+                </a>
+                <a
+                  href="https://twitter.com/xplora_tn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline-info btn-lg rounded-circle"
+                >
+                  <i className="bi bi-twitter"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Footer removed, now global */}
+    </>
   );
 }

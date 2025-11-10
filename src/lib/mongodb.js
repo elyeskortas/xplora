@@ -5,8 +5,10 @@ let isConnected = false
 export async function connectToDB() {
   if (isConnected) return mongoose.connection
 
+  const uri = process.env.MONGODB_URI_XPLORA || process.env.MONGODB_URI
+
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 30000,
       socketTimeoutMS: 45000,
     })

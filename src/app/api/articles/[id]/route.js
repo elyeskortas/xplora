@@ -1,14 +1,42 @@
-import { connectToDB } from "@/lib/mongodb"
-import Article from "@/models/article"
+import { connectToDB } from "../../../../../lib/mongodb.js"
+import Article from "../../../../../models/article.js"
 
-export const revalidate = 0
+export async function PUT(request, { params }) {
+  try {
+    await connectToDB()
+    const { id } = params
+    const body = await request.json()
+    const { title, image, content } = body
 
-export async function GET(_, { params }) {
-  const { id } = params
-  await connectToDB()
-  const article = await Article.findOne({ id }, { _id: 0 }).lean()
-  if (!article) {
-    return new Response(JSON.stringify({ error: "Not found" }), { status: 404 })
+    if (!title || !image || !content) {
+      return Response.json({ message: "All fields are required" }, { status: 400 })
+    }
+
+    const article = await Article.findOneAndUpdate({ _id: id }, { title, image, content }, { new: true })
+
+    if (!article) {
+      return Response.json({ message: "Article not found" }, { status: 404 })
+    }
+
+    return Response.json(article)
+  } catch (error) {
+    return Response.json({ message: "Error updating article" }, { status: 500 })
   }
-  return Response.json(article)
+}
+
+export async function DELETE(request, { params }) {
+  try {
+    await connectToDB()
+    const { id } = params
+
+    const article = await Article.findOneAndDelete({ _id: id })
+
+    if (!article) {
+      return Response.json({ message: "Article not found" }, { status: 404 })
+    }
+
+    return Response.json({ message: "Article deleted successfully" })
+  } catch (error) {
+    return Response.json({ message: "Error deleting article" }, { status: 500 })
+  }
 }

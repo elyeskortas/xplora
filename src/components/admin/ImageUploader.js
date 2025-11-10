@@ -1,12 +1,5 @@
-import ImageUploader from "@/components/admin/ImageUploader"
-
-function VinylForm() {
-  const [image, setImage] = useState("")
-
-  return (
-    <div>
-      <ImageUploader onUploaded={(filename) => setImage(filename)} />
-      <p className="mt-2">Image enregistrée : <strong>{image}</strong></p>
-    </div>
-  )
+// Admin image upload is currently out of scope for Xplora Tunisia.
+// Provide a no-op placeholder to satisfy imports.
+export default function ImageUploader() {
+  return null;
 }
